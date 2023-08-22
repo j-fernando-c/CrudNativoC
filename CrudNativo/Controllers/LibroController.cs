@@ -89,45 +89,23 @@ namespace CrudNativo.Controllers
         }
 
 
-        //eliminar
 
+
+        //get eliminar
+
+
+        [HttpPost]
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-
-            //obtener el libro
-
             var libro = _context.libro.Find(id);
             if (libro == null)
             {
                 return NotFound();
             }
-            return View(libro);
-        }
 
-
-        //post editar
-
-        [HttpPost]
-
-        [ValidateAntiForgeryToken]  //seguridad de la base da datos
-
-        public IActionResult Delete(Libro libro)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.libro.Remove(libro);
-                _context.SaveChanges();
-                return RedirectToAction("index");
-            }
-
-            return View();
-
-
+            _context.libro.Remove(libro);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
-
 }
