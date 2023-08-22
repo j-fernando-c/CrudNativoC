@@ -5,12 +5,50 @@
 
 <h1>Lista de Libros</h1>
 
-
-<div class="container">
-    <div class="row">
-        <div class=" col-sm-6">
-            <a class=" btn btn-success d-block" asp-action="create" asp-controller="Libro">Agregar</a>
-        </div>
+<div class="row">
+    <div class=" col-sm-6">
+        <a class=" btn btn-success d-block" asp-action="create" asp-controller="Libro">Agregar</a>
     </div>
 </div>
+
+<div class="row">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>@Html.DisplayNameFor(a => a.Id)</td>
+                <td>@Html.DisplayNameFor(a => a.Titulo)</td>
+                <td>@Html.DisplayNameFor(a => a.Descripcion)</td>
+                <td>@Html.DisplayNameFor(a => a.Autor)</td>
+                <td>@Html.DisplayNameFor(a => a.FechaPublicacion)</td>
+                <td>@Html.DisplayNameFor(a => a.Precio)</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- para que se recorra los registros-->
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Titulo</td>
+                    <td>@item.Descripcion</td>
+                    <td>@item.FechaPublicacion</td>
+                    <td>@item.Autor</td>
+                    <td>@item.Precio</td>
+                    <td>Acciones</td>
+                    <td>
+                        <a asp-controller="Libro" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                        <a asp-controller="Libro" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+
+
+
+
+            }
+
+        </tbody>
+    </table>
+
+
 

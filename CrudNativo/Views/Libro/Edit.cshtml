@@ -1,17 +1,21 @@
 ﻿@model CrudNativo.Models.Libro
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
+
+<h1>Edit</h1>
+
+
 
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <form method="post" asp-action="Create">
+            <form method="post" asp-action="Edit">
                 <!--para validar el lado del servidor-->
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Titulo" class="control.label"></label>
-                    <input asp-for="Titulo" class="form-control"/>
+                    <input asp-for="Titulo" class="form-control" />
                     <!-- para validar del lado del cliente-->
                     <span asp-asp-validation-for="Titulo" class="Text-danger"></span>
                 </div>
@@ -56,6 +60,3 @@
         </div>
     </div>
 </div>
-
-
-

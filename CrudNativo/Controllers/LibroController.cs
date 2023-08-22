@@ -1,6 +1,8 @@
 ﻿using CrudNativo.Data;
 using CrudNativo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrudNativo.Controllers
 {
@@ -43,5 +45,48 @@ namespace CrudNativo.Controllers
             }
             return View(libro);
         }
+
+
+
+        //Editar
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            //obtener el libro
+
+            var libro = _context.libro.Find(id);
+            if (libro == null)
+            {
+                return NotFound();
+            }
+            return View(libro);
+        }
+
+
+        //post editar
+
+        [HttpPost]
+
+        [ValidateAntiForgeryToken]  //seguridad de la base da datos
+
+        public IActionResult Edit(Libro libro)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.libro.Update(libro);
+                _context.SaveChanges();
+                return RedirectToAction("index");
+            }
+
+            return View();
+
+
+        }
     }
+
 }

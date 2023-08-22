@@ -18,6 +18,8 @@ namespace CrudNativo.Models
 
         public DateTime FechaPublicacion { get; set; }
         [Required(ErrorMessage = "El campo es Obligatorio")]
+        [DataType(DataType.Date)]
+
 
         public string Precio { get; set; }
     }
