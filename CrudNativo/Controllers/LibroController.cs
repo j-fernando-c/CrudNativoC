@@ -94,7 +94,7 @@ namespace CrudNativo.Controllers
         //get eliminar
 
 
-        [HttpPost]
+       
         public IActionResult Delete(int? id)
         {
             var libro = _context.libro.Find(id);
